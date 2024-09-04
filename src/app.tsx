@@ -1,7 +1,13 @@
-import { Button, NewButton } from "./components";
+import { Button } from "./components";
 
-const intents = [undefined, "primary", "secondary"] as const;
-const sizes = [undefined, "medium", "small"] as const;
+const variants = [
+  "fill-primary",
+  "fill-destructive",
+  "outline",
+  "text-primary",
+  "text-destructive",
+] as const;
+const sizes = ["medium", "small"] as const;
 
 function App() {
   return (
@@ -9,7 +15,7 @@ function App() {
       <thead>
         <tr>
           <th></th>
-          {intents.map((intent) => (
+          {variants.map((intent) => (
             <th scope="col">{intent || "default"}</th>
           ))}
         </tr>
@@ -17,30 +23,17 @@ function App() {
       <tbody>
         {sizes.map((size) => (
           <tr>
-            <th scope="row">{size || "default"}</th>
-            {intents.map((intent) => (
+            <th scope="row">{size}</th>
+            {variants.map((variant) => (
               <td scope="col">
-                <Button {...(intent && { intent })} {...(size && { size })}>
-                  {intent || "default"} button
+                <Button
+                  {...(variant && { variant: variant })}
+                  {...(size && { size })}
+                >
+                  Camp Button
                 </Button>
               </td>
             ))}
-          </tr>
-        ))}
-        {[""].map((size) => (
-          <tr>
-            <th scope="row">{size || "default"}</th>
-            <td>
-              <NewButton variant={"fill-action"}>Button</NewButton>
-              <NewButton variant={"fill-destructive"}>Button</NewButton>
-            </td>
-            {/* {["fill-active", "fill-danger"].map((intent) => (
-              <td scope="col">
-                <NewButton {...(intent && { intent })} {...(size && { size })}>
-                  {intent || "default"} button
-                </NewButton>
-              </td>
-            ))} */}
           </tr>
         ))}
       </tbody>

@@ -10,28 +10,34 @@
 
 .reset:focus-visible {
   outline: inherit;
+  background-color: var();
 }
 
 .default {
   cursor: pointer;
+  /* Display */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp200, 4px);
   /* Border */
   border-color: transparent;
-  border-radius: radii100;
-  border-style: bSolid;
-  border-width: b100;
-  /* spacing */
-  padding: var(--sp300, 8px) var(--sp400, 12px);
-  /* typography */
+  border-radius: var(--radii100, 4px);
+  border-style: var(--bSolid, solid);
+  border-width: var(--b100, 1px);
+  /* Typography */
   font-family: var(--font-family-ff-standard, "IBM Plex Sans");
   font-size: var(--font-size-fs-200, 14px);
   font-style: normal;
   font-weight: 500;
   line-height: var(--font-line-height-lh-200, 20px);
-  /* 
-  transition-duration: 'durationMedium';
+  /* Transition */
+  transition-duration: var(--durationMedium, 400ms);
   transition-property: background, border;
-  transition-timing-function: transitionOut; 
-  */
+  transition-timing-function: var(
+    --transitionOut,
+    cubic-bezier(0.23, 1, 0.32, 1)
+  );
 }
 .default:disabled {
   cursor: not-allowed;
@@ -42,31 +48,28 @@
  * Fill
  * 
  */
-.fill-base {
+.fill {
   color: var(--text-on-emphasis);
   fill: var(--icon-decorative-on-emphasis);
   border-radius: var(--radii100, 4px);
   /* sort this */
-  border-color: "white";
+  /* border-color: "white";
   outline-style: "bSolid";
   outline-color: "ocean600";
   outline-width: "b100";
-  box-shadow: "0 0 0 b300 ocean200";
+  box-shadow: "0 0 0 b300 ocean200"; */
 }
-.fill-base:disabled {
+.fill:disabled {
   opacity: 0.35;
 }
 
-.fill {
+.fill--primary {
   background-color: var(--bg-primary-emphasis);
 }
-.fill:hover {
+.fill--primary:hover {
   background-color: var(--bg-primary-emphasis-hover);
 }
-/* .fill:focus {
-  background-color: var(--bg-primary-emphasis-focus);
-} */
-.fill:active {
+.fill--primary:active {
   background-color: var(--bg-primary-emphasis-active);
 }
 
@@ -76,88 +79,67 @@
 .fill--destructive:hover {
   background-color: var(--bg-destructive-emphasis-hover);
 }
-/* .fill--destructive:focus {
-  background-color: var(--bg-destructive-emphasis-focus);
-} */
 .fill--destructive:active {
   background-color: var(--bg-destructive-emphasis-active);
 }
 
-/* export const cssTransformDefaults = {
-  size(value) {
-    return {
-      padding: value === 'small' ? 'sp200 sp300' : 'sp300 sp400',
-    };
-  },
-}; */
-
-/* const transformProps = {
-  ...cssTransformDefaults,
-  appearance(value) {
-    if (value === "destructive") {
-      return {
-        backgroundColor: "strawberry500",
-        ":hover:enabled": {
-          backgroundColor: "strawberry600",
-        },
-        ":focus:enabled": {
-          backgroundColor: "strawberry600",
-          borderColor: "white",
-          outlineColor: "strawberry600",
-          boxShadow: "0 0 0 b300 strawberry200",
-        },
-        ":active:enabled": {
-          backgroundColor: "strawberry700",
-        },
-      };
-    }
-  },
-}; */
-
 /**
  *
- * Existing 
+ * Outline
  * 
  */
-
-.base {
-  display: inline-flex;
-  border-width: 1px;
-  border-style: solid;
+.outline {
+  border-color: var(--border-supportive);
+  background-color: var(--bg-default);
 }
 
-.primary {
-  color: rgb(255 255 255);
-  background-color: rgb(59 130 246);
-  border: transparent;
+.outline:hover {
+  background-color: var(--bg-primary-hover);
+}
+.outline:active {
+  background-color: var(--bg-active);
+}
+.outline:disabled {
+  opacity: 0.5;
+}
+/**
+ *
+ * Text
+ * 
+ */
+.text {
+  background-color: transparent;
+}
+.text:disabled {
+  opacity: 0.5;
 }
 
-.primary:hover {
-  background-color: rgb(37 99 235);
+.text--primary {
+  color: var(--text-primary);
+}
+.text--primary:hover {
+  background-color: var(--bg-primary-hover);
+}
+.text--primary:active {
+  background-color: var(--bg-primary-active);
 }
 
-.secondary {
-  background-color: rgb(255 255 255);
-  color: rgb(31 41 55);
-  border-color: rgb(156 163 175);
+.text--destructive {
+  color: var(--text-destructive);
 }
-
-.secondary:hover {
-  background-color: rgb(243 244 246);
+.text--destructive:hover {
+  background-color: var(--bg-destructive-hover);
+}
+.text--destructive:active {
+  background-color: var(--bg-destructive-active);
 }
 
 .small {
-  font-size: 0.875rem /* 14px */;
-  line-height: 1.25rem /* 20px */;
-  padding: 0.25rem 0.5rem;
+  padding: var(--sp200, 4px) var(--sp300, 8px);
+  height: 28px;
 }
 
 .medium {
-  font-size: 1rem /* 16px */;
-  line-height: 1.5rem /* 24px */;
-  padding: 0.5rem 1rem;
-}
-
-.primaryMedium {
-  text-transform: uppercase;
+  padding: var(--sp300, 8px) var(--sp400, 12px);
+  height: 36px;
 }
